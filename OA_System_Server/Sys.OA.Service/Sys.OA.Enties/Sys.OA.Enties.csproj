@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="DbModels\**" />
+    <Compile Remove="DtoModel\**" />
+    <EmbeddedResource Remove="DbModels\**" />
+    <EmbeddedResource Remove="DtoModel\**" />
+    <None Remove="DbModels\**" />
+    <None Remove="DtoModel\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="sqlSugarCore" Version="4.9.9.3" />
+  </ItemGroup>
+</Project>
