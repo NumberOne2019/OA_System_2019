@@ -40,7 +40,7 @@ namespace Sys.OA.API
                     Contact = new Contact
                     {
                         Name = "乐观的student",
-                        Email = string.Empty,
+                        Email = "2543600431@qq.com",
                         Url = "http://www.cnblogs.com/yilezhu/"
                     },
                     License = new License
