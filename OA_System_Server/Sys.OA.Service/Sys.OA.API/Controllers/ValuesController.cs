@@ -12,7 +12,7 @@ namespace Sys.OA.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ValuesController : BaseController
+    public class ValuesController : Controller
     {
         private readonly UserInfoService _userInfoService;
         public ValuesController( UserInfoService userInfoService)

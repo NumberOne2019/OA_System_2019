@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 using FytSoa.Common;
 using FytSoa.Service.DtoModel;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
 using Sugar.Enties;
 using Sys.OA.Extensions;
 using Sys.OA.Service.Implements;
@@ -19,15 +19,12 @@ using Sys.OA.Service.Interfaces;
 namespace Sys.OA.API.Controllers
 {
     [Route("api/[controller]")]
-    public class Account : ControllerBase
+    public class AccountController : Controller
     {
         private readonly UserInfoService _userInfoService;
-        private readonly IUserInfoService _iuserInfoService;
-
-        private Account(UserInfoService userInfoService, IUserInfoService iuserInfoService)
+        public AccountController(UserInfoService userInfoService)
         {
             _userInfoService = userInfoService;
-            _iuserInfoService = iuserInfoService;
         }
         // GET: api/<controller>
         [HttpGet]
@@ -60,12 +57,11 @@ namespace Sys.OA.API.Controllers
         public void Delete(int id)
         {
         }
-
         /// <summary>
         /// 登录
         /// </summary>
         /// <returns></returns>
-        [HttpGet("login")]
+        [HttpPost("login")]
         [AllowAnonymous]
         public ApiResult<string> Login([FromBody]SysAdminLogin parm)
         {
