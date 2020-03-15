@@ -14,6 +14,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.Swagger;
 using Swashbuckle.AspNetCore.SwaggerGen;
+using Sys.OA.Extensions.Middleware;
 
 namespace Sys.OA.API
 {
@@ -33,7 +34,6 @@ namespace Sys.OA.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddTransient<Sys.OA.Service.Implements.UserInfoService>();
-            //注册Swagger生成器，定义一个和多个Swagger 文档
             //注册Swagger生成器，定义一个和多个Swagger 文档
             services.AddSwaggerGen(c =>
             {
@@ -61,28 +61,6 @@ namespace Sys.OA.API
                 var xmlPath = Path.Combine(basePath, "Sys.OA.API.xml");
                 c.IncludeXmlComments(xmlPath);
             });
-            //if (Env.IsDevelopment())
-            //{
-            //    services.AddSwaggerGen(options =>
-            //    {
-            //        foreach (var d in docs) options.SwaggerDoc(d, new Info { Version = d });
-            //        options.DocInclusionPredicate((docName, description) =>
-            //        {
-            //            description.TryGetMethodInfo(out MethodInfo mi);
-            //            var attr = mi.DeclaringType.GetCustomAttribute<ApiExplorerSettingsAttribute>();
-            //            if (attr != null)
-            //            {
-            //                return attr.GroupName == docName;
-            //            }
-            //            else
-            //            {
-            //                return docName == "未分类";
-            //            }
-            //        });
-            //        var ss = options.SwaggerGeneratorOptions;
-            //        options.IncludeXmlComments(@"F:\扩展资料\OA_System_2019\OA_System_Server\Sys.OA.Service\Sys.OA.API\bin\Debug\netcoreapp2.2\Sys.OA.API.xml");
-            //    });
-            //}
             //跨域设置  
             services.AddCors();
             services.AddCors(options =>
@@ -126,8 +104,10 @@ namespace Sys.OA.API
                         options.SwaggerEndpoint($"/swagger/{item}/swagger.json", item);
                 });
             }
+            app.UseMyMiddleware();
             app.UseCors("AllowAll");
             app.UseMvc();
+            //app.UseMiddleware<MyMiddleware>();
         }
     }
 }

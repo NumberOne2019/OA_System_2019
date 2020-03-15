@@ -61,7 +61,7 @@ namespace Sys.OA.API.Controllers
         /// 登录
         /// </summary>
         /// <returns></returns>
-        [HttpPost("login")]
+        [HttpGet("login")]
         [AllowAnonymous]
         public ApiResult<string> Login([FromBody]SysAdminLogin parm)
         {

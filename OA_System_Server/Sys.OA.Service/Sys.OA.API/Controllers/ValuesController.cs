@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Sys.OA.API.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController]
+    [ApiController,AutoValidateAntiforgeryToken]
     public class ValuesController : Controller
     {
         private readonly UserInfoService _userInfoService;
